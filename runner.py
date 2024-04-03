@@ -4,7 +4,7 @@ import time
 import omok as omok
 
 pygame.init() #pygame 초기화
-size = width, height = 600, 400
+size = width, height = 600, 600
 
 # Colors
 black = (0, 0, 0)
@@ -46,7 +46,7 @@ while True:
         playXRect.center = playXButton.center
         pygame.draw.rect(screen, white, playXButton)
         screen.blit(playX, playXRect)
-        # ㅇ button pygame 객체
+        # o button pygame 객체
         playOButton = pygame.Rect(5 * (width / 8), (height / 2), width / 4, 50)
         playO = mediumFont.render("Play as O", True, black)
         playORect = playO.get_rect()
@@ -68,19 +68,19 @@ while True:
     else:
 
         # Draw game board
-        tile_size = 80
-        tile_origin = (width / 2 - (1.5 * tile_size),
-                       height / 2 - (1.5 * tile_size))
+        tile_size = 40
+        tile_origin = (width / 6 - (1.5 * tile_size),
+                       height / 4 - (1.5 * tile_size))
         tiles = []
-        for i in range(3):
+        for i in range(15):
             row = []
-            for j in range(3):
+            for j in range(15):
                 rect = pygame.Rect(
                     tile_origin[0] + j * tile_size,
                     tile_origin[1] + i * tile_size,
                     tile_size, tile_size
                 )
-                pygame.draw.rect(screen, white, rect, 3)
+                pygame.draw.rect(screen, white, rect, 2)
 
                 if board[i][j] != omok.EMPTY:
                     move = moveFont.render(board[i][j], True, white)
@@ -123,11 +123,12 @@ while True:
         click, _, _ = pygame.mouse.get_pressed()
         if click == 1 and user == player and not game_over:
             mouse = pygame.mouse.get_pos()
-            for i in range(3):
-                for j in range(3):
+            for i in range(15):
+                for j in range(15):
                     if (board[i][j] == omok.EMPTY and tiles[i][j].collidepoint(mouse)):
                         board = omok.result(board, (i, j))
 
+        #재시작
         if game_over:
             againButton = pygame.Rect(width / 3, height - 65, width / 3, 50)
             again = mediumFont.render("Play Again", True, black)

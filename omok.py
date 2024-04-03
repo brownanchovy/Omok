@@ -10,10 +10,8 @@ EMPTY = None
 set_minus = {(0,0),(0,1),(0,2),(1,0),(2,0),(1,2),(2,1),(1,1),(2,2)}
 
 def initial_state():
-    #tictactoe 초기 상태를 리턴 2차원 배열 리스트
-    return [[EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY]]
+    #omok 초기 상태를 리턴 2차원 배열 리스트
+    return [[EMPTY]*15]*15
 
 
 def player(board):
